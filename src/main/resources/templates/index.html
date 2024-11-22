@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt" class="h-full bg-neutral-900">
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Thesis Man</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+
+<body class="h-full">
+<div class="min-h-full">
+    <nav class="bg-green-600">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center">
+                    <div>
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="/" class="text-gray-300 hover:bg-green-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
+                            <a href="/submissao-tema" class="text-gray-300 hover:bg-green-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Submeter Tema</a>
+                            <a href="/atribuir-tema"
+                               th:if="${role == 'teacher'}"
+                               class="text-gray-300 hover:bg-green-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Atribuir Tema</a>
+                            <a href="/marcar-defesa-proposta"
+                               th:if="${role == 'teacher'}"
+                               class="text-gray-300 hover:bg-green-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Marcações Defesas</a>
+                            <a href="/atribuir-nota-propostas-defesa"
+                               th:if="${role == 'teacher'}"
+                               class="text-gray-300 hover:bg-green-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Notas</a>
+                            <a href="/estatisticas"
+                               th:if="${role == 'teacher'}"
+                               class="text-gray-300 hover:bg-green-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Estatisticas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-4">
+                    <div class="flex items-center gap-x-2">
+                        <span class="text-sm font-semibold leading-6 text-white" th:text="${userEmail}"></span>
+                        <span class="inline-block h-10 w-10 overflow-hidden rounded-full bg-gray-100">
+                          <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                          </svg>
+                        </span>
+                    </div>
+                    <div>
+                        <a href="/logout" class="text-white bg-red-600 hover:bg-red-500 hover:text-white shadow-sm rounded-md px-3 py-2 text-sm font-medium flex items-center gap-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                            </svg>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div th:if="${errorMessage}" class="mx-auto max-w-2xl mb-8">
+                <div class="bg-red-600 rounded-md shadow-sm text-white px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Erro!</strong>
+                <span class="block" th:text="${errorMessage}">Ocorreu um erro.></span>
+            </div>
+            </div>
+            <div th:replace="${fragment} :: ${fragment}"></div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

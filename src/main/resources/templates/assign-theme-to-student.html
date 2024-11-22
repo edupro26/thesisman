@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>ThesisMan | Atribuir Tema</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div th:fragment="assign-theme-to-student" class="mx-auto">
+
+    <div class="w-96 max-h-96 overflow-y-auto mx-auto">
+        <legend class="text-base font-semibold leading-6 text-white">Escolha o estudante para atribuir o tema</legend>
+        <div class="mt-4 divide-y divide-gray-200 border-b border-t border-gray-200">
+            <div th:each="student : ${students}" class="relative flex items-center py-4">
+                <div class="min-w-0 flex-1 text-sm leading-6 flex flex-row justify-start items-center">
+                    <label class="select-none font-medium text-white" th:text="${student.name}"></label>
+                    <span class="ml-2 px-2 py-1.5 rounded-md shadow-sm bg-neutral-800 text-white" th:text="${student.average}"></span>
+                </div>
+                <div class="ml-3 flex h-6 items-center">
+                    <form th:action="@{/atribuir-tema/{id}(id=${themeId})}" method="post">
+                        <input type="hidden" name="studentId" th:value="${student.id}">
+                        <button type="submit" class="bg-green-600 text-white px-3 py-1.5 rounded-md shadow-sm hover:bg-green-500 text-sm">Atribuir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

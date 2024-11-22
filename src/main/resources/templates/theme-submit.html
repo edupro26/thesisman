@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>ThesisMan | Submeter Tema</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div th:fragment="theme-submit" class="mx-auto">
+
+    <div class="mx-auto mt-10">
+        <h1 th:if="${role == 'teacher'}" class="text-3xl font-semibold leading-9 text-white text-center">Tema Dissertação</h1>
+        <h1 th:if="${role == 'company'}" class="text-3xl font-semibold leading-9 text-white text-center">Tema Projeto</h1>
+        <form th:action="@{/submeter-tema}" th:object="${submission}" method="POST">
+            <div class="w-96 mx-auto mt-8">
+                <div th:if="${error}" class="bg-red-600 flex items-center justify-center rounded-md py-3 shadow-sm">
+                    <p th:text="${error}" class="text-white text-center"></p>
+                </div>
+            </div>
+            <div class="flex flex-row gap-x-10 mx-auto justify-center mt-8">
+                <div class="w-96">
+                    <div>
+                        <label for="title" class="block text-sm font-medium leading-6 text-white">Titulo</label>
+                        <div class="mt-2">
+                            <input id="title" name="title" th:field="*{title}" type="text" required class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="description" class="block text-sm font-medium leading-6 text-white">Descrição</label>
+                        <div class="mt-2">
+                            <textarea id="description" name="description" th:field="*{description}" required class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="remuneration" class="block text-sm font-medium leading-6 text-white">Remuneração Mensal</label>
+                        <div class="mt-2">
+                            <input id="remuneration" name="remuneration" th:field="*{remuneration}" type="number" required
+                                   class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-96 max-h-96 overflow-y-auto">
+                    <fieldset>
+                        <legend class="text-base font-semibold leading-6 text-white">Selecionar Mestrados Compativeis</legend>
+                        <div class="mt-4 divide-y divide-gray-200 border-b border-t border-gray-200">
+                            <div th:each="master : ${masters}" class="relative flex items-start py-4">
+                                <div class="min-w-0 flex-1 text-sm leading-6">
+                                    <label th:for="${'selectedMasters' + master.id}" th:text="${master.name}" class="select-none font-medium text-white"></label>
+                                </div>
+                                <div class="ml-3 flex h-6 items-center">
+                                    <input th:id="${'selectedMasters' + master.id}" th:name="selectedMasters" th:value="${master.id}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-600">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div th:if="${role == 'company'}">
+                <div class="w-96 mx-auto mt-8">
+                    <label for="adviser" class="block text-sm font-medium leading-6 text-white">Selecione o orientador interno</label>
+                    <select id="adviser" name="adviser" th:field="*{internal}"
+                            class="mt-2 block w-full bg-white/5 rounded-md border-0 py-1.5 pl-3 pr-10 text-white ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-green-600 sm:text-sm sm:leading-6">
+                        <option th:each="teacher : ${teachers}" th:value="${teacher.id}" th:text="${teacher.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="mx-auto flex justify-center mt-10">
+                <button type="submit" class="flex w-72 justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Submeter Tema</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

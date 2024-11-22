@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>ThesisMan | Marcar Defesa - Proposta</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div th:fragment="defenses-proposal" class="mx-auto">
+        <div class="mx-auto flex justify-center gap-x-2">
+            <a href="/marcar-defesa-proposta" class="bg-neutral-800 rounded-md shadow-sm text-white py-1.5 px-3">Defesas Propostas</a>
+            <a href="/marcar-defesa-tese" class="bg-green-600 rounded-md shadow-sm hover:bg-green-500 text-white py-1.5 px-3">Defesas Teses</a>
+        </div>
+        <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+                <h1 class="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-white">Marcar Defesa Proposta</h1>
+            </div>
+
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-2xl">
+                <div class="bg-white shadow sm:rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <ul class="divide-y divide-gray-200">
+                            <li th:each="proposal : ${proposals}" class="py-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-lg font-semibold text-gray-900" th:text="${proposal.student.name}">Aluno</p>
+                                        <p class="text-sm text-gray-600" th:text="'Tema: ' + ${proposal.getTheme().getTitle()}">Título</p>
+                                        <p class="text-sm text-gray-600" th:text="'Proposal ID: ' + ${proposal.id}">Posposta ID</p>
+                                        <p class="text-sm text-gray-600" th:unless="${proposal.proposalDefense}">Defesa não agendada</p>
+                                        <p class="text-sm text-gray-600" th:if="${proposal.proposalDefense}">Defesa agendada: <span th:text="${proposal.proposalDefense.reservation.date}"></span></p>
+                                        <div th:if="${proposal.proposalDefense}">
+                                            <p th:if="${proposal.proposalDefense.reservation.type} == 'PRESENCIAL'" class="text-sm text-gray-600" th:text="'Sala: ' + ${proposal.proposalDefense.reservation.place}">Sala</p>
+                                            <p th:unless="${proposal.proposalDefense.reservation.type} == 'PRESENCIAL'" class="text-sm text-gray-600">Defesa realizada remotamente</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a th:unless="${proposal.proposalDefense}" th:href="@{/marcar-defesa-proposta/{proposalId}(proposalId=${proposal.id})}" class="text-sm font-semibold text-green-600 hover:text-green-400 hover:underline">Marcar Defesa</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

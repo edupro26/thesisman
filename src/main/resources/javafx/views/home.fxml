@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ul.fc.css.thesisman.presentation.javafx.controllers.HomeController">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="115.0" layoutY="97.0" prefHeight="120.0" prefWidth="970.0" style="-fx-background-color: #C0C0C0;">
+               <children>
+                  <Label layoutX="59.0" layoutY="27.0" prefHeight="61.0" prefWidth="669.0" text="Candidaturas para temas de Tese de Mestrado">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="applicationsButton" layoutX="781.0" layoutY="35.0" mnemonicParsing="false" onAction="#loadApplicationsScene" prefHeight="50.0" prefWidth="150.0" text="Entrar..." />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="115.0" layoutY="285.0" prefHeight="120.0" prefWidth="970.0" style="-fx-background-color: #C0C0C0;">
+               <children>
+                  <Label layoutX="56.0" layoutY="30.0" prefHeight="61.0" prefWidth="669.0" text="Submissão de documentos de Tese">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="documentsButton" layoutX="782.0" layoutY="35.0" mnemonicParsing="false" onAction="#loadSubmissionsScene" prefHeight="50.0" prefWidth="150.0" text="Entrar..." />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="1200.0" style="-fx-background-color: #16A34A;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="60.0" layoutY="22.0" prefHeight="42.0" prefWidth="350.0" text="Dados Pessoais" textFill="WHITE">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="115.0" layoutY="75.0" prefHeight="35.0" prefWidth="64.0" text="Nome:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="115.0" layoutY="110.0" prefHeight="35.0" prefWidth="76.0" text="Número:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="115.0" layoutY="145.0" prefHeight="35.0" prefWidth="88.0" text="Mestrado:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="115.0" layoutY="180.0" prefHeight="35.0" prefWidth="88.0" text="Média:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="235.0" layoutY="75.0" prefHeight="35.0" prefWidth="500.0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="numberLabel" contentDisplay="CENTER" layoutX="235.0" layoutY="110.0" prefHeight="35.0" prefWidth="500.0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="mastersLabel" contentDisplay="CENTER" layoutX="235.0" layoutY="145.0" prefHeight="35.0" prefWidth="500.0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="averageLabel" contentDisplay="CENTER" layoutX="235.0" layoutY="180.0" prefHeight="35.0" prefWidth="500.0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

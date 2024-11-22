@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>ThesisMan | Atribuir Notas</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div th:fragment="grade-defenses" class="mx-auto">
+        <div class="mx-auto flex justify-center gap-x-2" th:if="${type} == 'proposal'">
+            <a href="/atribuir-nota-propostas-defesa" class="bg-neutral-800 rounded-md shadow-sm text-white py-1.5 px-3">Defesas Propostas</a>
+            <a href="/atribuir-nota-teses-defesa" class="bg-green-600 rounded-md shadow-sm hover:bg-green-500 text-white py-1.5 px-3">Defesas Teses</a>
+        </div>
+        <div class="mx-auto flex justify-center gap-x-2" th:if="${type} == 'thesis'">
+            <a href="/atribuir-nota-propostas-defesa" class="bg-green-600 rounded-md shadow-sm hover:bg-green-500 text-white py-1.5 px-3">Defesas Propostas</a>
+            <a href="/atribuir-nota-teses-defesa" class="bg-neutral-800 rounded-md shadow-sm text-white py-1.5 px-3">Defesas Teses</a>
+        </div>
+        <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+                <h1 th:if="${type} == 'proposal'" class="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-white">Atribuir Notas de Propostas</h1>
+                <h1 th:if="${type} == 'thesis'" class="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-white">Atribuir Notas de Teses</h1>
+            </div>
+
+        </div>
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-2xl">
+            <div class="bg-white shadow sm:rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <ul class="divide-y divide-gray-200">
+                        <li th:each="defense : ${defenses}" class="py-4">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-lg font-semibold text-gray-900" th:text="${defense.student.name}">Defense ID</p>
+                                    <p class="text-sm text-gray-600">Tipo: <span th:text="${defense.type}">Data Defesa</span></p>
+                                    <p class="text-sm text-gray-600">Data de Defesa: <span th:text="${defense.date}">Data Defesa</span></p>
+                                    <p class="text-sm text-gray-600">Tema: <span th:text="${defense.getTheme().getTitle()}">Tema</span></p>
+                                    <p th:if="${defense.reservation.type} == 'PRESENCIAL'" class="text-sm text-gray-600" th:text="'Sala: ' + ${defense.reservation.place}">Grade</p>
+                                    <p th:unless="${defense.reservation.type} == 'PRESENCIAL'" class="text-sm text-gray-600">Defesa realizada remotamente</p>
+                                    <p class="text-sm text-gray-600" th:if="${defense.grade}">Defesa avaliada</p>
+                                    <p class="text-sm text-gray-600" th:unless="${defense.grade}">Defesa não avaliada</p>
+                                </div>
+                                <div>
+                                    <div th:if="${defense.grade}">
+                                        <p class="text-sm text-gray-600" th:text="'Nota: ' + ${defense.grade}">Grade</p>
+                                    </div>
+                                    <div th:unless="${defense.grade}">
+                                        <form th:action="@{${type == 'thesis' ? '/atribuir-nota/tese/' + defense.id : '/atribuir-nota/proposta/' + defense.id}}" method="POST">
+                                            <div class="mb-4">
+                                                <label for="grade" class="block text-sm font-medium text-gray-700">Nota</label>
+                                                <input type="number" id="grade" name="grade" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                                            </div>
+                                            <div class="flex justify-end">
+                                                <button type="submit" class="bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-500">Atribuir</button>
+                                            </div>
+                                        </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
