@@ -24,23 +24,6 @@ mvn clean javafx:run
 O projeto dispõe também de uma interface gráfica para web. Esta utiliza SSR (Server Side Rendering) e foi desenvolvida com recurso ao `Thymeleaf`.
 É disponibilizada através do container referido anteriormente. Para aceder à interface gráfica web, basta aceder ao endereço `localhost:8080` no browser.
 
-## Utilizadores para Demo
-### Professores
-- amfonseca@ciencias.ulisboa.pt
-- casim@ciencias.ulisboa.pt
-- dfsoares@ciencias.ulisboa.pt
-- pjangelo@ciencias.ulisboa.pt
-
-### Alunos
-- fc57551@alunos.fc.ul.pt
-- fc54979@alunos.fc.ul.pt
-- fc52026@alunos.fc.ul.pt
-- fc56783@alunos.fc.ul.pt
-- fc56784@alunos.fc.ul.pt
-- fc56785@alunos.fc.ul.pt
-
-Qualquer password é aceite no caso dos professores e alunos.
-
 ## Autores
 
 Projeto realizado por:
